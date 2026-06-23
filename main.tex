@@ -1,0 +1,140 @@
+% ===========================================
+% ------------ DOCUMENT GLOBAL --------------
+% ===========================================
+
+\documentclass[12pt]{article}
+
+% -----------------------
+% Choix des bullet-points
+% -----------------------
+%\renewcommand{\labelitemi}{$\bullet$} %Pour des bullet points plutôt que des tirets
+%\renewcommand{\labelitemii}{$\circ$}  % 2e niveau : cercle
+%\renewcommand{\labelitemiii}{$\diamond$}  % 3e niveau : losange
+
+
+% ===========================================
+% --------------- PACKAGES ------------------
+% ===========================================
+\usepackage{graphicx} % Required for inserting images
+\usepackage[utf8]{inputenc}    % pour les accents en UTF-8
+\usepackage[T1]{fontenc}       % pour une meilleure gestion des caractères accentués
+\usepackage[french]{babel}     % pour la typographie française (espaces devant : ; ? etc.)
+\usepackage{markdown}
+\usepackage{enumitem}  % Pour des listes plus flexibles
+\usepackage{csquotes}  % Pour les guillemets français
+\usepackage{physics} %notably for bra, kets, etc (\bra{}, \ket{}, \matrixel{}{}{}, \ketbra
+\usepackage{amsmath, amssymb, mathrsfs} %amsthm permet de définir des théorèmes, etc.
+\usepackage{hyperref}
+\usepackage{pdfpages} % Pour insérer des PDF modulairement
+\usepackage{mathtools} % pour créer des accolades alignées à droite avec \rcases{}
+
+
+% --------------------------------------------------------------------
+% Créer des sections non numérotées mais apparaissant dans le sommaire
+% --------------------------------------------------------------------
+\usepackage{titlesec}
+% Style spécial pour sections spéciales
+\newcommand{\specialsection}[1]{%
+  \section*{#1}%
+  \addcontentsline{toc}{section}{#1}%
+}
+
+
+% -----------------
+% Choix de la marge
+% -----------------
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=3cm, right=3cm]{geometry} % Marges personnalisées
+
+% -------------
+% Bibliographie
+% -------------
+\usepackage[
+  backend=biber,
+  style=authoryear,  % ou numeric, alphabetic, verbose, etc.
+  citestyle=authoryear
+]{biblatex}
+\addbibresource{./references.bib}
+
+
+% ===========================================
+% --------- ENVIRONNEMENT LOCAL -------------
+% ===========================================
+
+\input{utils/theorem} %to include theorem environment
+
+
+
+% ===========================================
+% --------- STRUCTURE DU DOCUMENT -----------
+% ===========================================
+
+% ------------------
+% Réglages d’édition
+% ------------------
+%\includeonly{sections/10_Section1} % Pour n’ajouter qu’une seule section dans la compilation
+
+% ===========================================
+
+% -----
+% Titre
+% -----
+\title{TITRE\\ \large Sous-titre}
+\author{Rémi Moreau}
+\date{DATE}
+
+\begin{document}
+\maketitle
+
+% --------------------------------
+% Inclusion du résumé opérationnel 
+% --------------------------------
+\input{sections/01_Resume} % Comment to remove the abstract
+
+% ---------------------
+% Réglages du sommaire 
+% ---------------------
+\renewcommand{\contentsname}{Sommaire} % Pour renommer la Table des matières en sommaire
+\setcounter{tocdepth}{1}    % Table des matières : seulement les sections sont numérotées
+\tableofcontents % Pour générer la table des matières
+
+% ---------------------
+% Introduction 
+% ---------------------
+%\include{sections/02_Introduction}
+
+% ===========================================
+
+% -----------------
+% Corps du document 
+% -----------------
+%\setcounter{secnumdepth}{0} % Pour désactiver tous les numéros de section
+
+\include{sections/10_Section1}
+
+\include{sections/20_Section2}
+
+% ===========================================
+
+% ----------
+% Conclusion
+% ----------
+%\include{sections/90_Conclusion}
+
+% -------
+% Annexes 
+% -------
+\appendix % Permet de passer d’une numérotation « 1, 2, etc. » en « A, B, etc. »
+%\include{sections/91_Annexes}
+
+% -------------
+% Remerciements
+% -------------
+%\include{sections/92_Remerciements}
+
+% -------------
+% Bibliographie
+% -------------
+\nocite{*} %Si envie d’afficher toute la bibliographie, même ce qui n’est pas cité
+\printbibliography[title={Références bibliographiques}]
+
+\end{document}

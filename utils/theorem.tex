@@ -1,0 +1,172 @@
+
+%\swapnumbers %such that it is « 1.4 Theorem » instead of « Theorem 1.4 »
+
+% ===========================================
+% -------- RACCOURCIS SYMBOLIQUES -----------
+% ===========================================
+
+% ssi, ssi de définition et ssi idée
+\newcommand{\ssi}{\ensuremath{\ \text{ssi}\ }}
+\newcommand{\ssid}{\ensuremath{\overset{\triangle}{\ \text{ssi}\ }}}
+\newcommand{\ssiidea}{\ensuremath{\overset{\star}{\ \text{ssi}\ }}}
+
+
+% i.e. et i.e. de définition
+\newcommand{\ied}{\ensuremath{\overset{\triangle}{\ \text{i.e.}\ }}}
+\newcommand{\idest}{\ensuremath{\ \text{i.e.}\ }}
+
+% indépendance
+\newcommand{\indep}{\mathrel{\perp\!\!\!\perp}}
+
+% insérer facilement une jolie fonction
+\newcommand{\nicefunc}[5]{%
+  \setlength{\arraycolsep}{3pt}%
+  \begin{array}{rcl}
+    #1 : #2 & \longrightarrow & #3 \\[3pt]
+    #4 & \longmapsto & #5
+  \end{array}%
+}
+
+
+
+
+
+
+
+
+% ===========================================
+% ----- DÉFINITION DES THÉORÈMES ETC. -------
+% ===========================================
+\usepackage{amsthm}
+
+\theoremstyle{definition}% use "plain" for default
+\newtheorem*{thm}{Théorème}
+\newtheorem*{lem}{Lemme}
+\newtheorem*{prop}{Proposition}
+\newtheorem*{cor}{Corollaire}
+\newtheorem*{KL}{Klein’s Lemma}
+\newtheorem*{conjecture}{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem*{defn}{Définition}
+\newtheorem*{exmp}{Exemple}
+\newtheorem*{xca}{Exercice}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+\newtheorem*{note}{Note}
+\newtheorem*{case}{Case}
+
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{xcolor}
+
+
+
+
+
+\definecolor{lightgray}{gray}{0.95}
+
+\mdfdefinestyle{graybox}{
+  backgroundcolor=lightgray,
+  linecolor=gray,
+  linewidth=0pt, %0.6 for normal line
+  roundcorner=0pt,%6 for slightly round
+  innertopmargin=0pt,
+  innerbottommargin=10pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt
+}
+
+\definecolor{lightorange}{RGB}{255, 245, 225}
+
+\mdfdefinestyle{orangebox}{
+  backgroundcolor=lightorange,
+  linecolor=orange!60!black,
+  linewidth=0pt, %0.6 for normal line
+  roundcorner=0pt,%6 for slightly round
+  innertopmargin=0pt,
+  innerbottommargin=10pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt
+}
+
+
+% Définition de la couleur vert menthe clair
+\definecolor{lightmint}{RGB}{220, 255, 220}
+
+% Définition du style de boîte vert menthe
+\mdfdefinestyle{mintbox}{
+  backgroundcolor=lightmint, % Couleur de fond vert menthe clair
+  linecolor=green!60!black, % Couleur de la bordure
+  linewidth=0pt, % Largeur de la bordure (0pt pour aucune bordure visible)
+  roundcorner=0pt, % Coins carrés (0pt) ou arrondis (par exemple 6pt)
+  innertopmargin=0pt, % Marge intérieure supérieure
+  innerbottommargin=10pt, % Marge intérieure inférieure
+  innerleftmargin=10pt, % Marge intérieure gauche
+  innerrightmargin=10pt % Marge intérieure droite
+}
+
+
+% Couleur rose très clair (à ajuster si besoin)
+\definecolor{lightpink}{RGB}{255, 238, 243}
+% Style de boîte rose clair
+\mdfdefinestyle{pinkbox}{
+  backgroundcolor=lightpink, % Fond rose très clair
+  linecolor=pink!50!black, % Bordure rose/gris discrète
+  linewidth=0pt, % Pas de bordure visible (mettre 1pt si tu en veux une légère)
+  roundcorner=0pt, % Coins carrés (mettre 6pt pour arrondis)
+  innertopmargin=0pt,
+  innerbottommargin=10pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt
+}
+
+
+
+
+
+
+
+
+
+
+\usepackage{etoolbox} % nécessaire pour surroundwithmdframed
+
+\surroundwithmdframed[style=orangebox]{thm}
+\surroundwithmdframed[style=graybox]{defn}
+\surroundwithmdframed[style=mintbox]{prop}
+\surroundwithmdframed[style=mintbox]{cor}
+\surroundwithmdframed[style=pinkbox]{conjecture}
+
+
+
+
+% ===========================================
+% ---------- BOÎTE DE DÉMONSTRATION ----------
+% ===========================================
+
+% Définition du style de boîte pour les démonstrations
+\mdfdefinestyle{dembox}{
+  backgroundcolor=none,      % fond transparent
+  linecolor=black,           % couleur de la ligne
+  linewidth=3pt,             % épaisseur de la ligne
+  leftline=true,             % ligne uniquement à gauche
+  topline=false,             % pas de ligne en haut
+  bottomline=false,          % pas de ligne en bas
+  rightline=false,           % pas de ligne à droite
+  innertopmargin=0pt,        % marges internes
+  innerbottommargin=10pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt
+}
+
+% Définition de l'environnement "dem" (pour démonstration)
+\newenvironment{dem}[1][Démonstration]{%
+  \begin{mdframed}[style=dembox]
+  \noindent\textbf{#1.}\quad
+}{%
+  \hfill $\square$
+  \end{mdframed}
+}
+
+
