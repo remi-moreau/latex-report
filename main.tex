@@ -5,35 +5,35 @@
 \documentclass[12pt]{article}
 
 % -----------------------
-% Choix des bullet-points
+% Bullet-point style
 % -----------------------
-%\renewcommand{\labelitemi}{$\bullet$} %Pour des bullet points plutôt que des tirets
-%\renewcommand{\labelitemii}{$\circ$}  % 2e niveau : cercle
-%\renewcommand{\labelitemiii}{$\diamond$}  % 3e niveau : losange
+%\renewcommand{\labelitemi}{$\bullet$} %For bullet points instead of dashes
+%\renewcommand{\labelitemii}{$\circ$}  % 2nd level: circle
+%\renewcommand{\labelitemiii}{$\diamond$}  % 3rd level: diamond
 
 
 % ===========================================
 % --------------- PACKAGES ------------------
 % ===========================================
 \usepackage{graphicx} % Required for inserting images
-\usepackage[utf8]{inputenc}    % pour les accents en UTF-8
-\usepackage[T1]{fontenc}       % pour une meilleure gestion des caractères accentués
-\usepackage[french]{babel}     % pour la typographie française (espaces devant : ; ? etc.)
+\usepackage[utf8]{inputenc}    % for accented characters in UTF-8
+\usepackage[T1]{fontenc}       % for better handling of accented characters
+\usepackage[english]{babel}    % document language & typography. Advised French version: [french] (handles French spacing before : ; ? etc.)
 \usepackage{markdown}
-\usepackage{enumitem}  % Pour des listes plus flexibles
-\usepackage{csquotes}  % Pour les guillemets français
+\usepackage{enumitem}  % For more flexible lists
+\usepackage{csquotes}  % For French quotation marks
 \usepackage{physics} %notably for bra, kets, etc (\bra{}, \ket{}, \matrixel{}{}{}, \ketbra
-\usepackage{amsmath, amssymb, mathrsfs} %amsthm permet de définir des théorèmes, etc.
+\usepackage{amsmath, amssymb, mathrsfs} %amsthm allows defining theorems, etc.
 \usepackage{hyperref}
-\usepackage{pdfpages} % Pour insérer des PDF modulairement
-\usepackage{mathtools} % pour créer des accolades alignées à droite avec \rcases{}
+\usepackage{pdfpages} % For inserting PDFs modularly
+\usepackage{mathtools} % to create right-aligned braces with \rcases{}
 
 
 % --------------------------------------------------------------------
-% Créer des sections non numérotées mais apparaissant dans le sommaire
+% Create unnumbered sections that still appear in the table of contents
 % --------------------------------------------------------------------
 \usepackage{titlesec}
-% Style spécial pour sections spéciales
+% Special style for special sections
 \newcommand{\specialsection}[1]{%
   \section*{#1}%
   \addcontentsline{toc}{section}{#1}%
@@ -41,16 +41,16 @@
 
 
 % -----------------
-% Choix de la marge
+% Margin settings
 % -----------------
-\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=3cm, right=3cm]{geometry} % Marges personnalisées
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=3cm, right=3cm]{geometry} % Custom margins
 
 % -------------
-% Bibliographie
+% Bibliography
 % -------------
 \usepackage[
   backend=biber,
-  style=authoryear,  % ou numeric, alphabetic, verbose, etc.
+  style=authoryear,  % or numeric, alphabetic, verbose, etc.
   citestyle=authoryear
 ]{biblatex}
 \addbibresource{./references.bib}
@@ -65,20 +65,27 @@
 
 
 % ===========================================
-% --------- STRUCTURE DU DOCUMENT -----------
+% --------- DOCUMENT STRUCTURE ------------
 % ===========================================
 
 % ------------------
-% Réglages d’édition
+% Editing settings
 % ------------------
-%\includeonly{sections/10_Section1} % Pour n’ajouter qu’une seule section dans la compilation
+%\includeonly{sections/10_Section1} % To compile only a single section
 
 % ===========================================
 
 % -----
-% Titre
+% Title
 % -----
-\title{TITRE\\ \large Sous-titre}
+% The logo is included inside \title: this is the simplest way to display it
+% on the title page with \maketitle (the article class has no native logo support).
+% Adjust "width=0.5\textwidth" to change its size (fraction of the text width).
+% Advised French versions: "TITRE" and "Sous-titre".
+\title{
+  \includegraphics[width=0.5\textwidth]{assets/logo.png}\\[1em] % COMMENT THIS LINE TO REMOVE LOGO
+  TITLE\\ 
+  \large Subtitle}
 \author{Rémi Moreau}
 \date{DATE}
 
@@ -86,16 +93,16 @@
 \maketitle
 
 % --------------------------------
-% Inclusion du résumé opérationnel 
+% Inclusion of the abstract
 % --------------------------------
-\input{sections/01_Resume} % Comment to remove the abstract
+\input{sections/01_Abstract} % Comment to remove the abstract. Advised French version: sections/01_Resume
 
 % ---------------------
-% Réglages du sommaire 
+% Table of contents settings
 % ---------------------
-\renewcommand{\contentsname}{Sommaire} % Pour renommer la Table des matières en sommaire
-\setcounter{tocdepth}{1}    % Table des matières : seulement les sections sont numérotées
-\tableofcontents % Pour générer la table des matières
+\renewcommand{\contentsname}{Contents} % To rename the Table of Contents. Advised French version: "Sommaire"
+\setcounter{tocdepth}{1}    % Table of contents: only sections are numbered
+\tableofcontents % To generate the table of contents
 
 % ---------------------
 % Introduction 
@@ -105,9 +112,9 @@
 % ===========================================
 
 % -----------------
-% Corps du document 
+% Document body
 % -----------------
-%\setcounter{secnumdepth}{0} % Pour désactiver tous les numéros de section
+%\setcounter{secnumdepth}{0} % To disable all section numbers
 
 \include{sections/10_Section1}
 
@@ -121,20 +128,20 @@
 %\include{sections/90_Conclusion}
 
 % -------
-% Annexes 
+% Appendices
 % -------
-\appendix % Permet de passer d’une numérotation « 1, 2, etc. » en « A, B, etc. »
-%\include{sections/91_Annexes}
+\appendix % Switches numbering from "1, 2, etc." to "A, B, etc."
+%\include{sections/91_Appendices} % Advised French version: sections/91_Annexes
 
 % -------------
-% Remerciements
+% Acknowledgements
 % -------------
-%\include{sections/92_Remerciements}
+%\include{sections/92_Acknowledgements} % Advised French version: sections/92_Remerciements
 
 % -------------
-% Bibliographie
+% Bibliography
 % -------------
-\nocite{*} %Si envie d’afficher toute la bibliographie, même ce qui n’est pas cité
-\printbibliography[title={Références bibliographiques}]
+%\nocite{*} %Uncomment to display the whole bibliography, even uncited entries
+\printbibliography[title={References}] % Advised French version: "Références bibliographiques"
 
 \end{document}

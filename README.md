@@ -102,6 +102,8 @@ And you are done!
 
 To add text and content: use the files the `sections/` folder and add some if needed.
 
+To add figures, logos, or other images: put them in the `assets/` folder and use the usual LaTeX syntax.
+
 To modify the order, structure and front page of your document: navigate in the `main.tex` file.
 
 VSCode advices:

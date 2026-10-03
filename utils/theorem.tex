@@ -2,23 +2,23 @@
 %\swapnumbers %such that it is « 1.4 Theorem » instead of « Theorem 1.4 »
 
 % ===========================================
-% -------- RACCOURCIS SYMBOLIQUES -----------
+% -------- SYMBOLIC SHORTCUTS -------------
 % ===========================================
 
-% ssi, ssi de définition et ssi idée
+% iff, definitional iff and idea iff
 \newcommand{\ssi}{\ensuremath{\ \text{ssi}\ }}
 \newcommand{\ssid}{\ensuremath{\overset{\triangle}{\ \text{ssi}\ }}}
 \newcommand{\ssiidea}{\ensuremath{\overset{\star}{\ \text{ssi}\ }}}
 
 
-% i.e. et i.e. de définition
+% i.e. and definitional i.e.
 \newcommand{\ied}{\ensuremath{\overset{\triangle}{\ \text{i.e.}\ }}}
 \newcommand{\idest}{\ensuremath{\ \text{i.e.}\ }}
 
-% indépendance
+% independence
 \newcommand{\indep}{\mathrel{\perp\!\!\!\perp}}
 
-% insérer facilement une jolie fonction
+% easily insert a nice-looking function
 \newcommand{\nicefunc}[5]{%
   \setlength{\arraycolsep}{3pt}%
   \begin{array}{rcl}
@@ -35,22 +35,22 @@
 
 
 % ===========================================
-% ----- DÉFINITION DES THÉORÈMES ETC. -------
+% ----- DEFINITION OF THEOREMS ETC. -------
 % ===========================================
 \usepackage{amsthm}
 
 \theoremstyle{definition}% use "plain" for default
-\newtheorem*{thm}{Théorème}
-\newtheorem*{lem}{Lemme}
+\newtheorem*{thm}{Theorem} % Advised French version: "Théorème"
+\newtheorem*{lem}{Lemma} % Advised French version: "Lemme"
 \newtheorem*{prop}{Proposition}
-\newtheorem*{cor}{Corollaire}
+\newtheorem*{cor}{Corollary} % Advised French version: "Corollaire"
 \newtheorem*{KL}{Klein’s Lemma}
 \newtheorem*{conjecture}{Conjecture}
 
 \theoremstyle{definition}
-\newtheorem*{defn}{Définition}
-\newtheorem*{exmp}{Exemple}
-\newtheorem*{xca}{Exercice}
+\newtheorem*{defn}{Definition} % Advised French version: "Définition"
+\newtheorem*{exmp}{Example} % Advised French version: "Exemple"
+\newtheorem*{xca}{Exercise} % Advised French version: "Exercice"
 
 \theoremstyle{remark}
 \newtheorem*{rem}{Remark}
@@ -91,30 +91,30 @@
 }
 
 
-% Définition de la couleur vert menthe clair
+% Definition of the light mint green color
 \definecolor{lightmint}{RGB}{220, 255, 220}
 
-% Définition du style de boîte vert menthe
+% Definition of the light mint box style
 \mdfdefinestyle{mintbox}{
-  backgroundcolor=lightmint, % Couleur de fond vert menthe clair
-  linecolor=green!60!black, % Couleur de la bordure
-  linewidth=0pt, % Largeur de la bordure (0pt pour aucune bordure visible)
-  roundcorner=0pt, % Coins carrés (0pt) ou arrondis (par exemple 6pt)
-  innertopmargin=0pt, % Marge intérieure supérieure
-  innerbottommargin=10pt, % Marge intérieure inférieure
-  innerleftmargin=10pt, % Marge intérieure gauche
-  innerrightmargin=10pt % Marge intérieure droite
+  backgroundcolor=lightmint, % Light mint green background color
+  linecolor=green!60!black, % Border color
+  linewidth=0pt, % Border width (0pt for no visible border)
+  roundcorner=0pt, % Square corners (0pt) or rounded (e.g. 6pt)
+  innertopmargin=0pt, % Inner top margin
+  innerbottommargin=10pt, % Inner bottom margin
+  innerleftmargin=10pt, % Inner left margin
+  innerrightmargin=10pt % Inner right margin
 }
 
 
-% Couleur rose très clair (à ajuster si besoin)
+% Very light pink color (adjust if needed)
 \definecolor{lightpink}{RGB}{255, 238, 243}
-% Style de boîte rose clair
+% Light pink box style
 \mdfdefinestyle{pinkbox}{
-  backgroundcolor=lightpink, % Fond rose très clair
-  linecolor=pink!50!black, % Bordure rose/gris discrète
-  linewidth=0pt, % Pas de bordure visible (mettre 1pt si tu en veux une légère)
-  roundcorner=0pt, % Coins carrés (mettre 6pt pour arrondis)
+  backgroundcolor=lightpink, % Very light pink background
+  linecolor=pink!50!black, % Discreet pink/gray border
+  linewidth=0pt, % No visible border (set to 1pt for a light one)
+  roundcorner=0pt, % Square corners (set to 6pt for rounded)
   innertopmargin=0pt,
   innerbottommargin=10pt,
   innerleftmargin=10pt,
@@ -130,7 +130,7 @@
 
 
 
-\usepackage{etoolbox} % nécessaire pour surroundwithmdframed
+\usepackage{etoolbox} % required for surroundwithmdframed
 
 \surroundwithmdframed[style=orangebox]{thm}
 \surroundwithmdframed[style=graybox]{defn}
@@ -142,26 +142,27 @@
 
 
 % ===========================================
-% ---------- BOÎTE DE DÉMONSTRATION ----------
+% ---------- PROOF BOX ----------------------
 % ===========================================
 
-% Définition du style de boîte pour les démonstrations
+% Definition of the proof box style
 \mdfdefinestyle{dembox}{
-  backgroundcolor=none,      % fond transparent
-  linecolor=black,           % couleur de la ligne
-  linewidth=3pt,             % épaisseur de la ligne
-  leftline=true,             % ligne uniquement à gauche
-  topline=false,             % pas de ligne en haut
-  bottomline=false,          % pas de ligne en bas
-  rightline=false,           % pas de ligne à droite
-  innertopmargin=0pt,        % marges internes
+  backgroundcolor=none,      % transparent background
+  linecolor=black,           % line color
+  linewidth=3pt,             % line thickness
+  leftline=true,             % line on the left only
+  topline=false,             % no top line
+  bottomline=false,          % no bottom line
+  rightline=false,           % no right line
+  innertopmargin=0pt,        % inner margins
   innerbottommargin=10pt,
   innerleftmargin=10pt,
   innerrightmargin=10pt
 }
 
-% Définition de l'environnement "dem" (pour démonstration)
-\newenvironment{dem}[1][Démonstration]{%
+% Definition of the "dem" environment (for proof)
+% Advised French version of the default title: "Démonstration"
+\newenvironment{dem}[1][Proof]{%
   \begin{mdframed}[style=dembox]
   \noindent\textbf{#1.}\quad
 }{%
