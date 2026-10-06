@@ -6,9 +6,9 @@
 % ===========================================
 
 % iff, definitional iff and idea iff
-\newcommand{\ssi}{\ensuremath{\ \text{ssi}\ }}
-\newcommand{\ssid}{\ensuremath{\overset{\triangle}{\ \text{ssi}\ }}}
-\newcommand{\ssiidea}{\ensuremath{\overset{\star}{\ \text{ssi}\ }}}
+\newcommand{\ssi}{\ensuremath{\ \text{iff}\ }}
+\newcommand{\ssid}{\ensuremath{\overset{\triangle}{\ \text{iff}\ }}}
+\newcommand{\ssiidea}{\ensuremath{\overset{\star}{\ \text{iff}\ }}}
 
 
 % i.e. and definitional i.e.
@@ -26,6 +26,95 @@
     #4 & \longmapsto & #5
   \end{array}%
 }
+
+
+
+
+% ---------------
+% 2 COLUMNS BLOCK
+% ---------------
+% Activation de la syntaxe LaTeX3
+\ExplSyntaxOn
+
+% Création des variables internes pour stocker le contenu et compter
+\tl_new:N \l_twocol_body_tl
+\int_new:N \l_twocol_count_int
+
+\NewDocumentCommand{\twocol}{ m }
+  {
+    % 1. On réinitialise la variable de texte et le compteur à 0
+    \tl_clear:N \l_twocol_body_tl
+    \int_zero:N \l_twocol_count_int
+
+    % 2. On boucle sur chaque élément séparé par une virgule
+    \clist_map_inline:nn { #1 }
+      {
+        \int_incr:N \l_twocol_count_int
+        
+        \int_if_even:nTF { \l_twocol_count_int }
+          {
+            % CAS PAIR (colonne de droite) : on ajoute juste l'argument
+            \tl_put_right:Nn \l_twocol_body_tl { ##1 }
+          }
+          {
+            % CAS IMPAIR (colonne de gauche) :
+            % S'il ne s'agit pas du tout premier argument, on ajoute un saut de ligne \\
+            \int_compare:nNnF { \l_twocol_count_int } = { 1 }
+              { \tl_put_right:Nn \l_twocol_body_tl { \\ } }
+            
+            % On ajoute l'argument, suivi de l'esperluette et de l'espace demandés
+            \tl_put_right:Nn \l_twocol_body_tl { ##1 &\  }
+          }
+      }
+    
+    % 3. On affiche le résultat final dans l'environnement align
+    \begin{align}
+      \l_twocol_body_tl
+    \end{align}
+  }
+
+\ExplSyntaxOff
+
+
+
+
+
+
+\ExplSyntaxOn
+
+% Variable de liste interne
+\clist_new:N \l_acc_clist
+
+% Macro \leftacc { arg1, arg2, ... }
+\NewDocumentCommand{\leftacc}{ m }
+  {
+    \clist_set:Nn \l_acc_clist { #1 }
+    \ensuremath
+      {
+        \left\{
+        \begin{array}{l}
+          \clist_use:Nn \l_acc_clist { \\ }
+        \end{array}
+        \right.
+      }
+  }
+
+% Macro \rightacc { arg1, arg2, ... }
+\NewDocumentCommand{\rightacc}{ m }
+  {
+    \clist_set:Nn \l_acc_clist { #1 }
+    \ensuremath
+      {
+        \left.
+        \begin{array}{r}
+          \clist_use:Nn \l_acc_clist { \\ }
+        \end{array}
+        \right\}
+      }
+  }
+
+\ExplSyntaxOff
+
 
 
 
